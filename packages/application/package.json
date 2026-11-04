@@ -1,0 +1,31 @@
+{
+  "name": "@repo/application",
+  "version": "1.0.0",
+  "description": "Application layer with use cases and services for the project",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "files": ["src"],
+  "scripts": {
+    "lint": "biome check",
+    "check-types": "tsc --noEmit --pretty",
+    "test": "vitest run"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./workflows": "./src/workflows/index.ts",
+    "./*": "./src/*.ts"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "catalog:",
+    "@typescript/native": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  },
+  "dependencies": {
+    "@repo/domain": "workspace:*",
+    "better-result": "catalog:",
+    "zod": "catalog:"
+  }
+}

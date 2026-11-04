@@ -1,0 +1,44 @@
+{
+  "name": "@repo/backend",
+  "version": "1.0.0",
+  "description": "API server for the project",
+  "type": "module",
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch --on-success \"node dist/server.js\"",
+    "start": "node dist/server.js",
+    "db:studio": "drizzle-kit studio",
+    "db:generate": "drizzle-kit generate --name",
+    "db:migrate": "drizzle-kit migrate",
+    "db:seed": "tsx src/scripts/seed.ts",
+    "check-types": "tsc --noEmit --pretty",
+    "lint": "biome check"
+  },
+  "keywords": [],
+  "author": "",
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "catalog:",
+    "@typescript/native": "catalog:",
+    "drizzle-kit": "^0.31.11",
+    "tsdown": "^0.23.5",
+    "tsx": "^4.23.15",
+    "typescript": "catalog:"
+  },
+  "dependencies": {
+    "@hono/node-server": "^2.1.6",
+    "@node-rs/argon2": "^2.2.2",
+    "@orpc/openapi": "catalog:",
+    "@orpc/server": "catalog:",
+    "@orpc/zod": "catalog:",
+    "@repo/application": "workspace:*",
+    "@repo/contract": "workspace:*",
+    "@repo/domain": "workspace:*",
+    "better-auth": "catalog:",
+    "better-result": "catalog:",
+    "drizzle-orm": "^0.45.4",
+    "hono": "^4.13.16",
+    "postgres": "^3.4.9",
+    "zod": "catalog:"
+  }
+}

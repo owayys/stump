@@ -1,0 +1,32 @@
+{
+  "name": "@repo/contract",
+  "version": "1.0.0",
+  "description": "Contracts and schemas for the project",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "files": ["src"],
+  "scripts": {
+    "lint": "biome check",
+    "check-types": "tsc --noEmit --pretty"
+  },
+  "exports": {
+    "./contracts": "./src/contracts/index.ts",
+    ".": "./src/index.ts",
+    "./schemas": "./src/schemas/index.ts",
+    "./*": "./src/*.ts"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "catalog:",
+    "@typescript/native": "catalog:",
+    "typescript": "catalog:"
+  },
+  "dependencies": {
+    "@orpc/contract": "catalog:",
+    "@orpc/openapi": "catalog:",
+    "@repo/application": "workspace:*",
+    "@repo/domain": "workspace:*",
+    "zod": "catalog:"
+  }
+}

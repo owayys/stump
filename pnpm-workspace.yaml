@@ -1,0 +1,39 @@
+packages:
+  - apps/*
+  - packages/*
+
+catalog:
+  zod: ^4.6.7
+  better-result: 3.0.1
+  "@orpc/client": 2.0.0-beta.48
+  "@orpc/contract": 2.0.0-beta.48
+  "@orpc/openapi": 2.0.0-beta.48
+  "@orpc/server": 2.0.0-beta.48
+  "@orpc/tanstack-query": 2.0.0-beta.48
+  "@orpc/zod": 2.0.0-beta.48
+  # TS 7 (native tsc) has no JS API yet; tools needing it get TS 6 as "typescript"
+  typescript: npm:@typescript/typescript6@^6.0.2
+  "@typescript/native": npm:typescript@^7.0.2
+  "@types/node": ^24.0.0
+  "@biomejs/biome": 2.6.4
+  better-auth: ^1.7.17
+  vitest: ^5.1.0
+
+allowBuilds:
+  "@prisma/client": false
+  "@prisma/engines": false
+  better-sqlite3: false
+  esbuild: false
+  prisma: false
+
+minimumReleaseAgeExclude:
+  - tsdown@0.23.5
+  - "@better-auth/core@1.7.17"
+  - "@better-auth/drizzle-adapter@1.7.17"
+  - "@better-auth/kysely-adapter@1.7.17"
+  - "@better-auth/memory-adapter@1.7.17"
+  - "@better-auth/mongo-adapter@1.7.17"
+  - "@better-auth/prisma-adapter@1.7.17"
+  - "@better-auth/telemetry@1.7.17"
+  - better-auth@1.7.17
+  - better-call@1.4.5

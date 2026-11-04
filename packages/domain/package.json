@@ -1,0 +1,33 @@
+{
+  "name": "@repo/domain",
+  "version": "1.0.0",
+  "description": "Domain logic and entities for the project",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "files": ["src"],
+  "scripts": {
+    "lint": "biome check",
+    "check-types": "tsc --noEmit --pretty",
+    "test": "vitest run"
+  },
+  "exports": {
+    "./grocery-list-item": "./src/grocery-list-item/index.ts",
+    "./grocery-list": "./src/grocery-list/index.ts",
+    ".": "./src/index.ts",
+    "./user": "./src/user/index.ts",
+    "./utils": "./src/utils/index.ts",
+    "./*": "./src/*.ts"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "catalog:",
+    "@typescript/native": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  },
+  "dependencies": {
+    "better-result": "catalog:",
+    "zod": "catalog:"
+  }
+}
