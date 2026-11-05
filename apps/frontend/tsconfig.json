@@ -6,7 +6,8 @@
     "strict": true,
     "erasableSyntaxOnly": false,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@assets/*": ["../../assets/*"]
     }
   },
   "include": ["src"],

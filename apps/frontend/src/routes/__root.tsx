@@ -1,3 +1,4 @@
+import favicon from "@assets/stump-mark.svg?url"
 import { TanStackDevtools } from "@tanstack/react-devtools"
 import type { QueryClient } from "@tanstack/react-query"
 import { ReactQueryDevtoolsPanel } from "@tanstack/react-query-devtools"
@@ -72,6 +73,9 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
         description: "Full-stack TypeScript starter.",
       }),
     ],
-    links: [{ rel: "stylesheet", href: styles }],
+    links: [
+      { rel: "stylesheet", href: styles },
+      { rel: "icon", type: "image/svg+xml", href: favicon },
+    ],
   }),
 })
