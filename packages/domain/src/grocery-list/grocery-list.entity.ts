@@ -46,7 +46,7 @@ const ensureOwner = (
 
 export const GroceryListEntity = {
   create: (data: GroceryListCreateData, owner: User): GroceryList => ({
-    ...newEntityFields<GroceryList["id"]>(),
+    ...newEntityFields(GroceryListId),
     ...data,
     ownerId: owner.id,
     active: false,

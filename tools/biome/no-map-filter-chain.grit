@@ -1,0 +1,8 @@
+language js
+
+or {
+  `$arr.map($m).filter($f)`,
+  `$arr.filter($f).map($m)`
+} as $call where {
+  register_diagnostic(span=$call, message="Chained map/filter: use a single flatMap.", severity="error")
+}

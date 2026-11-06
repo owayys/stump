@@ -28,6 +28,9 @@
     "enabled": true,
     "rules": {
       "preset": "recommended",
+      "nursery": {
+        "noUnsafeTypeAssertion": "error"
+      },
       "style": {
         "useImportType": "off",
         "noRestrictedImports": {
@@ -44,10 +47,15 @@
       }
     }
   },
+  "plugins": ["./tools/biome/no-map-filter-chain.grit"],
   "overrides": [
     {
       "includes": ["apps/frontend/**"],
       "linter": { "domains": { "react": "recommended" } }
+    },
+    {
+      "includes": ["**/test/**"],
+      "linter": { "rules": { "nursery": { "noUnsafeTypeAssertion": "off" } } }
     }
   ],
 

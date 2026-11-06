@@ -1,5 +1,4 @@
-import type { GroceryList } from "@repo/domain/grocery-list/grocery-list.entity"
-import type { User } from "@repo/domain/user/user.entity"
+import { type User, UserSchema } from "@repo/domain/user/user.entity"
 import { eq } from "drizzle-orm"
 import { createAuth } from "@/infra/auth"
 import { createDb } from "@/infra/db/conn"
@@ -9,7 +8,9 @@ const db = createDb()
 const auth = createAuth(db)
 
 const SEED_USER = {
-  email: (process.env.SEED_USER_EMAIL || "test@dev.com") as User["email"],
+  email: UserSchema.shape.email.parse(
+    process.env.SEED_USER_EMAIL || "test@dev.com",
+  ),
   name: process.env.SEED_USER_NAME || "Test User",
   password: process.env.SEED_USER_PASSWORD || "testpass",
 }
@@ -154,13 +155,13 @@ async function seedDatabase() {
       console.log(
         `👤 User ${SEED_USER.email} already exists, using existing user`,
       )
-      userId = existingUser[0].id as User["id"]
+      userId = existingUser[0].id
     } else {
       console.log(`👤 Creating user: ${SEED_USER.email}`)
       const { user: created } = await auth.api.signUpEmail({
         body: SEED_USER,
       })
-      userId = created.id as User["id"]
+      userId = UserSchema.shape.id.parse(created.id)
 
       console.log(`✅ Created user and credentials for: ${SEED_USER.email}`)
     }
@@ -168,7 +169,7 @@ async function seedDatabase() {
     const existingLists = await db
       .select({ id: groceryLists.id, name: groceryLists.name })
       .from(groceryLists)
-      .where(eq(groceryLists.ownerId, userId as User["id"]))
+      .where(eq(groceryLists.ownerId, userId))
 
     if (existingLists.length > 0) {
       console.log(
@@ -183,7 +184,7 @@ async function seedDatabase() {
           .values({
             name: listData.name,
             description: listData.description,
-            ownerId: userId as User["id"],
+            ownerId: userId,
             active: true,
           })
           .returning({ id: groceryLists.id })
@@ -192,17 +193,17 @@ async function seedDatabase() {
           throw new Error(`Failed to create list: ${listData.name}`)
         }
 
-        const listId = newLists[0].id as GroceryList["id"]
+        const listId = newLists[0].id
         console.log(`   📋 Created list: ${listData.name}`)
 
         for (const item of listData.items) {
           await db.insert(groceryListItems).values({
-            listId: listId as GroceryList["id"],
+            listId,
             name: item.name,
             quantity: item.quantity,
             status: "pending",
             notes: item.notes,
-            createdBy: userId as User["id"],
+            createdBy: userId,
           })
         }
         console.log(`      ✅ Added ${listData.items.length} items`)

@@ -15,6 +15,8 @@ import { Textarea } from "@/components/ui/textarea"
 import { formatFieldErrors } from "@/shared/form/error-message"
 import { useNewListMutation } from "@/shared/hooks/lists-hooks"
 
+const noItems: ItemData[] = []
+
 export const NewListPage = () => {
   const newListMut = useNewListMutation()
 
@@ -22,7 +24,7 @@ export const NewListPage = () => {
     defaultValues: {
       name: "",
       description: "",
-      items: [] as ItemData[],
+      items: noItems,
     },
     onSubmit: async ({ value }) => {
       await newListMut.mutateAsync({

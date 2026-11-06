@@ -20,12 +20,12 @@ export const buildFilterConditions = <F extends object, C extends SQL<unknown>>(
 ): C[] => {
   const conditions: C[] = []
 
-  for (const key of Object.keys(mappers) as (keyof F)[]) {
+  for (const key in mappers) {
     const mapper = mappers[key]
     if (!mapper) continue
     const value = filters[key]
     if (value !== undefined && value !== null) {
-      const condition = mapper(value as NonNullable<F[typeof key]>)
+      const condition = mapper(value)
       if (condition !== undefined) {
         conditions.push(condition)
       }

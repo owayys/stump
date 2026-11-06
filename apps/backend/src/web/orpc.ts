@@ -50,6 +50,7 @@ export const validationErrMap = (err: unknown) => {
       cause: err.cause,
       message: "Input validation failed",
       data: z.flattenError(
+        // biome-ignore lint/nursery/noUnsafeTypeAssertion: every contract schema is zod, so these are zod issues
         new z.ZodError(err.cause.issues as z.core.$ZodIssue[]),
       ),
     })

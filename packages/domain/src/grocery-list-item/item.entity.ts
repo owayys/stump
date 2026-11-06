@@ -71,7 +71,7 @@ const ensureCanBeModifiedBy = (
 
 export const ItemEntity = {
   create: (data: ItemCreateData, list: GroceryList, owner: User): Item => ({
-    ...newEntityFields<Item["id"]>(),
+    ...newEntityFields(ItemId),
     ...data,
     listId: list.id,
     createdBy: owner.id,

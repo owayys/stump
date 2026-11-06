@@ -5,8 +5,14 @@ export const entityTimestamps = {
   updatedAt: z.date(),
 }
 
-export const newEntityFields = <Id extends string>() => {
+export const newEntityFields = <S extends z.ZodType<string, string>>(
+  idSchema: S,
+) => {
   const now = new Date()
 
-  return { id: crypto.randomUUID() as Id, createdAt: now, updatedAt: now }
+  return {
+    id: idSchema.parse(crypto.randomUUID()),
+    createdAt: now,
+    updatedAt: now,
+  }
 }

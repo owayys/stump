@@ -4,7 +4,10 @@ import { Plus, Search } from "lucide-react"
 import { ListCard } from "@/components/shared/ListCard"
 import { Button } from "@/components/ui/button"
 import { Input, NativeSelect } from "@/components/ui/input"
-import { type ListsSearch, listsQueryOptions } from "@/shared/hooks/lists-hooks"
+import {
+  ListsSearchSchema,
+  listsQueryOptions,
+} from "@/shared/hooks/lists-hooks"
 import { useDebouncedCallback } from "@/shared/hooks/use-debounced-callback"
 
 const listsRoute = getRouteApi("/_private/lists/")
@@ -55,7 +58,7 @@ export const GroceryListsListPage = () => {
             navigate({
               search: (prev) => ({
                 ...prev,
-                status: e.target.value as ListsSearch["status"],
+                status: ListsSearchSchema.shape.status.parse(e.target.value),
               }),
             })
           }
